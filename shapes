@@ -1,0 +1,67 @@
+#The purpose of this class is to allow someone to put in a number of sides and get an ASCII art
+# representation of that image.
+
+class Shapes:
+
+    def __init__(self, num):
+        self._num = num
+
+    @property
+    def num(self):
+        return self._num
+
+    @num.setter
+    def num(self, new_num):
+        if type(new_num) is not int:
+            raise ValueError("You must enter a number")
+        self._num = new_num
+
+    def __str__(self):
+        list_of_shapes = {0:'', 1: '-', 2: '-|', 3:'|-|', 4:'|=|', 5:'  ^\n|_|', 6: '<=>'}
+        return list_of_shapes[self.num]
+
+#Tests
+
+import unittest
+class TestStringMethods(unittest.TestCase):
+
+    # def test_tyipng(self):
+    #     with self.assertRaises(ValueError):
+    #         s1 = Shapes("Loki")
+
+    def test_one_side(self):
+        s0 = Shapes(1)
+        self.assertEqual(s0.__str__(), '-')
+        self.assertNotEqual(s0, 'Cleo')
+
+    def test_two_sides(self):
+        s0 = Shapes(2)
+        self.assertEqual(s0.__str__(), '-|')
+        self.assertNotEqual(s0, 'Cleo')
+
+    def test_three_sides(self):
+        s0 = Shapes(3)
+        self.assertEqual(s0.__str__(), '|-|')
+        self.assertNotEqual(s0, 'Cleo')
+
+    def test_four_sides(self):
+        s0 = Shapes(4)
+        self.assertEqual(s0.__str__(), '|=|')
+        self.assertNotEqual(s0, 'Cleo')
+
+    def test_five_sides(self):
+        s0 = Shapes(5)
+        self.assertEqual(s0.__str__(), '  ^\n|_|')
+        self.assertNotEqual(s0, 'Cleo')
+
+    def test_six_sides(self):
+        s0 = Shapes(6)
+        self.assertEqual(s0.__str__(), '<=>')
+        self.assertNotEqual(s0, 'Cleo')
+
+# if __name__ == 'main':
+s = Shapes(1)
+s = Shapes(5)
+print(s)
+# a = Art()
+# print(str(Shapes(s) + str(Shapes(s)) + '\n' + Shapes(s)))
